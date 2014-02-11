@@ -71,6 +71,19 @@ app.controller('OrdersController', function ($scope, customersService) {
     function init() {
         $scope.customers = customersService.getCustomers();
     }
+
+    $scope.insertOrder = function () {
+        var id = $scope.customerID;
+        var product = $scope.newOrder.product;
+        var quantity = $scope.newOrder.quantity;
+        var price = $scope.newOrder.price;
+        var orderTotal = $scope.newOrder.orderTotal;
+        customersService.insertOrder(id, product, quantity, price, orderTotal);
+        $scope.newOrder.product = '';
+        $scope.newOrder.quantity = '';
+        $scope.newOrder.price = '';
+        $scope.newOrder.orderTotal = '';
+    };
 });
 
 app.controller('NavbarController', function ($scope, $location) {
@@ -114,4 +127,8 @@ app.controller('OrderChildController', function ($scope) {
         $scope.orderby = orderby;
     };
 
+    
+
 });
+
+

@@ -5,6 +5,7 @@ app.service('customersService', function () {
         return customers;
     };
 
+
     this.insertCustomer = function (firstName, lastName, city) {
         var topID = customers.length + 1;
         customers.push({
@@ -31,6 +32,20 @@ app.service('customersService', function () {
             }
         }
         return null;
+    };
+
+    this.insertOrder = function (id, product, price, quantity, orderTotal) {
+        for (var i = 0; i < customers.length; i++) {
+            if (customers[i].id === id) {
+                customers[i].orders.push({
+                    product: product,
+                    price: price,
+                    quantity: quantity,
+                    orderTotal: orderTotal
+                });
+            }
+        }
+        
     };
 
     var customers = [
